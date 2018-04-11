@@ -1,7 +1,8 @@
 # EJBCA INSTALL
 
 ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
-以下步骤我亲自安装测试了数十次，确定每次都可以成功。
+
+(以下步骤我亲自安装测试了数十次，确定每次都可以成功)
 
 
 # 1. 下载ejbca_ce_6_10_1_2, wildfly-10.1.0.Final, JDK8 和 ANT
