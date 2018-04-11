@@ -244,7 +244,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 	
 # 11. 退出 jboss_cli.sh
 
-	停止 wildfly 然后再启动它 (谨记：必须要重启)
+	停止 wildfly 然后再启动它 (谨记：<b>必须要重启</b>)
 	
 # 12. 配置 wildfly undertow 服务
 	
