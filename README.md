@@ -42,19 +42,19 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 ## 2). 复制mysql驱动jar文件到modules/system/layers/base/com/mysql/jdbc/main目录。在此我们以mysql-connector-java-5.1.42.jar为例;
 ## 3). 在 modules/system/layers/base/com/mysql/jdbc/main目录新建一个文件 module.xml
 		
-		module.xml 文件内容:
+	module.xml 文件内容:
 		
-		<?xml version="1.0" encoding="UTF-8"?>
-		<module xmlns="urn:jboss:module:1.3" name="com.mysql.jdbc">
-		    <resources>
+	<?xml version="1.0" encoding="UTF-8"?>
+	<module xmlns="urn:jboss:module:1.3" name="com.mysql.jdbc">
+		<resources>
 			<resource-root path="mysql-connector-java-5.1.42.jar"/>
-		    </resources>
-		    <dependencies>
+		</resources>
+		<dependencies>
 			<module name="javax.api"/>
 			<module name="javax.transaction.api"/>
 			<module name="javax.servlet.api" optional="true"/>
-		    </dependencies>
-		</module>
+		</dependencies>
+	</module>
 		
 ## 4). 打开$WILDFLY_HOME/standalone/configuration/standalone.xml文件
 		
