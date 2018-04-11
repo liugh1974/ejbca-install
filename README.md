@@ -1,6 +1,7 @@
 # EJBCA INSTALL
 
 ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
+以下步骤我亲自安装测试了数十次，确定每次都可以成功。
 
 
 # 1. 下载ejbca_ce_6_10_1_2, wildfly-10.1.0.Final, JDK8 和 ANT
@@ -23,9 +24,9 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 	
 # 3. 安装好 JDK 后，需要安装更新 JDK 的 Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files
    
-   如果不更新的话，由于美国法律对相关加密算法出口限制，密码长度会有限制，最多不能超过7位
+   	如果不更新的话，由于美国法律对相关加密算法出口限制，密码长度会有限制，最多不能超过7位
 
-   下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+   	下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
 	 
 	 下载完成解压会得到 local_policy.jar， US_export_policy.jar 两个jar文件
 	 把这两个jar文件替换 JDK 的相同的文件。
@@ -34,7 +35,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 
 # 4. 配置wildfly数据源
   
-    (这个本来是可以用jboss-cli命令来做，但是用jboss-cli命令来做的话，在后面第12步的时候有时候会把添加的数据源删除掉，不知道什么原因，所以还是手动添加)
+	(数据源配置本来是可以用jboss-cli命令来做，但是用jboss-cli命令来做的话，在后面第12步的时候有时候会把添加的数据源删除掉，不知道什么原因，所以还是手动添加)
 
 ## 1). 在 $WILDFLY_HOME modules/system/layers/base/com 目录新建 mysql/jdbc/main目录;
 ## 2). 复制mysql驱动jar文件到modules/system/layers/base/com/mysql/jdbc/main目录。在此我们以mysql-connector-java-5.1.42.jar为例;
@@ -56,7 +57,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 		
 ## 4). 打开$WILDFLY_HOME/standalone/configuration/standalone.xml文件
 		
-### 1). 先找到 datasources/drivers 节点, 在 datasources/drivers 节点内添加上一步配置的的驱动，内容如下：
+### a. 先找到 datasources/drivers 节点, 在 datasources/drivers 节点内添加上一步配置的的驱动，内容如下：
 				
         <drivers>
             ...
@@ -68,7 +69,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 				
 	注意: 此处 driver 节点 module attribute值为第3步骤 module 节点 name attribute 的值，它们必须相同
 				
-### 2). 再在 drivers 的父节点 datasources 下添加一个 datasource 节点，内容如下：
+### b. 再在 drivers 的父节点 datasources 下添加一个 datasource 节点，内容如下：
 		
 	<datasources>
           ...
@@ -112,18 +113,18 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 		
 # 5. 修改$WILDFLY_HOME/bin/standalone.conf文件
 
-    JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"
+    	JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"
 	  
-    把 -Xmx -Xms 增加到 2048以上，且值相同， -XX:MetaspaceSize 修改为256M or 512M, 且 -XX:MetaspaceSize and -XX:MaxMetaspaceSize 值要相同
+    	把 -Xmx -Xms 增加到 2048以上，且值相同， -XX:MetaspaceSize 修改为256M or 512M, 且 -XX:MetaspaceSize and -XX:MaxMetaspaceSize 值要相同
 	
 # 6. 启动 wildfly
 	
-   $WILDFLY_HOME/bin/standalone.sh
+   	$WILDFLY_HOME/bin/standalone.sh
 
 # 7. 用 jboss-cli 连接 wildfly
 	
-    $WILDFLY_HOME/bin/jboss_cli.sh -c
-    等连接上以后，执行以下命令：
+    	$WILDFLY_HOME/bin/jboss_cli.sh -c
+    	等连接上以后，执行以下命令：
 	
 	/subsystem=remoting/http-connector=http-remoting-connector:remove
 	/subsystem=remoting/http-connector=http-remoting-connector:add(connector-ref="remoting",security-realm="ApplicationRealm")
