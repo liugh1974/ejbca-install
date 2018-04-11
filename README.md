@@ -42,7 +42,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 		
 		module.xml 文件内容:
 		
-                <?xml version="1.0" encoding="UTF-8"?>
+		<?xml version="1.0" encoding="UTF-8"?>
 		<module xmlns="urn:jboss:module:1.3" name="com.mysql.jdbc">
 		    <resources>
 			<resource-root path="mysql-connector-java-5.1.42.jar"/>
@@ -63,7 +63,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 		<driver name="mysql" module="com.mysql.jdbc">
                 	<driver-class>com.mysql.jdbc.Driver</driver-class>
                 	<xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
-            	</driver>
+		</driver>
         </drivers>
 				
 	注意: 此处 driver 节点 module attribute值为第3步骤 module 节点 name attribute 的值，它们必须相同
@@ -97,10 +97,10 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
           </datasource>
           <drivers>
               ...
-	      <driver name="mysql" module="com.mysql.jdbc">
+		<driver name="mysql" module="com.mysql.jdbc">
                   <driver-class>com.mysql.jdbc.Driver</driver-class>
                   <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
-              </driver>
+              	</driver>
           </drivers>
       </datasources>
 			
@@ -238,7 +238,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 	      alias 必须要和  $EJBCA_HOME/conf/web.properties httpsserver.hostname 相同
 	      第二个 keystore-password 必须和 $EJBCA_HOME/conf/web.properties  httpsserver.password 相同
         
-        最好密码是一样的，这里很容易出错
+	最好密码是一样的，这里很容易出错
 	
 # 11. 退出 jboss_cli.sh
 
@@ -274,7 +274,7 @@ ejbca_ce_6_10_1_2 + wildfly-10.1.0.Final + JDK8(Oracle) + mysql安装步骤：
 		
 
 
-	wildfly console 类似下面的 ERROR 日志都可以忽略：
+# 14. wildfly console 类似下面的 ERROR 日志都可以忽略：
 	11:21:25,129 ERROR [org.jboss.as.jsf] (MSC service thread 1-1) WFLYJSF0002: Could not load JSF managed bean class: org.ejbca.ui.web.admin.peerconnector.PeerConnectorsMBean
 	11:21:25,252 ERROR [org.jboss.as.jsf] (MSC service thread 1-1) WFLYJSF0002: Could not load JSF managed bean class: org.ejbca.ui.web.admin.peerconnector.PeerMgmtMBean
 	11:21:25,318 ERROR [org.jboss.as.jsf] (MSC service thread 1-1) WFLYJSF0002: Could not load JSF managed bean class: org.ejbca.ui.web.admin.peerconnector.PeerConnectorMBean
